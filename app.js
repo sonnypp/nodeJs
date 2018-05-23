@@ -22,7 +22,7 @@ var git = require('./routes/git');
 var contact = require('./routes/contact');
 var user = require('./routes/userCenter');
 var blogEdit = require('./routes/blogEdit');
-
+var test = require('./routes/test');
 var app = express();
 
 // view engine setup
@@ -77,6 +77,9 @@ app.use(session({
   resave:true,
   saveUninitialized:true
 }));
+
+
+app.use('/test',test);
 
 //配置路由页面
 app.use('/',index);
