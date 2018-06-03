@@ -63,15 +63,15 @@ router.post('/modify/pass', function (req, res) {
     var old_pass = pass_md5(req.body.old_pass);  //旧密码
     var new_pass = pass_md5(req.body.new_pass); //新密码
     //查询数据是否正确
-    person.Person.count({_id:req.body._id,password:old_pass},function(err,data){
-        if(err) {
-            res.json({msg:0,data:"原密码不正确"});
-        } else{
-            person.Person.update({_id:req.body._id,password:old_pass},{$set:{password:new_pass}},function(err,data){
-                if(err) {
-                    res.json({msg:0});
+    person.Person.count({ _id: req.body._id, password: old_pass }, function (err, data) {
+        if (err) {
+            res.json({ msg: 0, data: "原密码不正确" });
+        } else {
+            person.Person.update({ _id: req.body._id, password: old_pass }, { $set: { password: new_pass } }, function (err, data) {
+                if (err) {
+                    res.json({ msg: 0 });
                 } else {
-                    res.json({msg:1});
+                    res.json({ msg: 1 });
                 }
             });
         }
@@ -136,19 +136,19 @@ router.post('/article/add', function (req, res) {
 });
 
 //文章数据的修改
-router.put('/article/update',function(req,res){
+router.put('/article/update', function (req, res) {
     //首先要进行身份验证。
-    person.Person.count({_id:req.session._id,name:req.sesson.name},function(err,docs){
-        if(err) throw err;
-        if(docs == 0) {
-            res.json({msg:0});
+    person.Person.count({ _id: req.session._id, name: req.sesson.name }, function (err, docs) {
+        if (err) throw err;
+        if (docs == 0) {
+            res.json({ msg: 0 });
         } else {
-            var data={$set:{"title": req.body.title, "content": req.body.content}};
-            news.New.update({_id:req.body._id},data,function(err,result) {
-                if(err) throw err;
+            var data = { $set: { "title": req.body.title, "content": req.body.content } };
+            news.New.update({ _id: req.body._id }, data, function (err, result) {
+                if (err) throw err;
                 else {
-                   if(result) res.json({msg:1});
-                   else res.json({msg:0});
+                    if (result) res.json({ msg: 1 });
+                    else res.json({ msg: 0 });
                 }
             });
         }
