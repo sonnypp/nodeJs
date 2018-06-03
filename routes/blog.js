@@ -69,6 +69,8 @@ exports.reg = function (req, res) {
     res.render('reg', {});
 };
 
+
+//信息详情页
 var detail = function (req, res) {
     if (req.body.sRole == 1) {
         //处理注册

@@ -64,8 +64,6 @@ exports.blog_edit = function(req,res) {
 
 
 //将文本编辑器里的内容传给后台的数据库 及其更新博客内容
-
-
 exports.blog_updateBlog = function(req,res) {
     //上传内容
     if(req.body.role ==1 ) //销毁session
@@ -76,7 +74,6 @@ exports.blog_updateBlog = function(req,res) {
         //上传博客内容
 
         var titlePic = "";
-
         var con = req.body.con_text;
         //匹配图片（g表示匹配所有结果i表示区分大小写）
         var imgReg = /<img.*?(?:>|\/>)/gi;
